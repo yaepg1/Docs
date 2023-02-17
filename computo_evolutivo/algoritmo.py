@@ -13,8 +13,8 @@ def iniciar(tamanio, poblacion):
     for i in range(tamanio):
         temp = [0,0]
         # individuo i
-        temp[0] = random.uniform(-9, 16)
-        # temp[0] = 11
+        # temp[0] = random.uniform(-9, 16)
+        temp[0] = 10
 
         # aptitud del individuo i
         temp[1] = aptitud_funcion(temp[0])
@@ -40,7 +40,6 @@ def evalua(poblacion):
 
 def generacion_hijos(poblacion):
     # Haciendo una cruza de la primera mitad de elementos
-    
     for i in range(int(len(poblacion)/2)):
         otro = random.randint(0, int(len(poblacion)/2))
         poblacion[i+(int(len(poblacion)/2))][0] = (poblacion[i][0] + \
@@ -57,7 +56,7 @@ def mutacion(poblacion):
     # poblacion)
     for i in range(int(len(poblacion)/2), int(len(poblacion))):
         # mutación de los hijos
-        poblacion[i][0] = poblacion[i][0] + random.normalvariate(0, 0.1)
+        poblacion[i][0] = poblacion[i][0] + random.normalvariate(0, 1.5)
         # para no salirnos del rango
         if poblacion[i][0] < -10:
             poblacion[i][0] = 10
@@ -70,14 +69,14 @@ def main(repeticiones, tamanio):
     # Genera población inicial
     iniciar(tamanio, pob)
     # Imprime
-    print("Poblacion inicial :")
-    for i in pob:
-        print(i)
+    #print("Poblacion inicial :")
+    #for i in pob:
+    #    print(i)
     # Generaciones
     generacion = 0
 
     #for i in range(repeticiones): 
-    while(pob[0][1] < 871.99):
+    while(pob[0][1] < 871.9):
         # Ordena por aptitud
         ordena(pob)
 
@@ -90,14 +89,14 @@ def main(repeticiones, tamanio):
         ordena(pob)
         
         generacion = generacion + 1
-    print("Población final :")
-    for i in pob:
-        print(i)
+    #print("Población final :")
+    #for i in pob:
+    #    print(i)
     return generacion
 
 # main(repeticiones, tamaño_de_poblacion )
 gens = []
-for i in range(1):
+for i in range(50):
     # ignorar "1000"
     gens.append(main(1000, 20))
 
@@ -105,3 +104,5 @@ for i in range(1):
 print("Resultados: ", gens)
 print("Promedio", statistics.mean(gens))
 print("Desv estandar: ", statistics.pstdev(gens))
+print("Min :", min(gens))
+print("Max :", max(gens))
