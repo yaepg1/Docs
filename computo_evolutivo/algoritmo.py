@@ -95,7 +95,7 @@ def main(repeticiones, tamanio):
         print(i)
     return generacion
 
-# main(repeticiones, tamaño_de_poblacion)
+# main(repeticiones, tamaño_de_poblacion )
 gens = []
 for i in range(1):
     # ignorar "1000"
